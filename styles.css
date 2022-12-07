@@ -1,13 +1,14 @@
-body{
-    background-color:black;
+body {
+    background-color: black;
 }
 
-h1{
+h1 {
     color: brown;
     font-family: Gill sans;
     text-align: center;
-    font-size:1000%;
+    font-size: 1000%;
 }
 
-#skitt-ui{
+jmnodes {
+    outline: white 3px solid;
 }

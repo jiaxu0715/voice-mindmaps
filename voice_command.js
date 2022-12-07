@@ -1,7 +1,7 @@
 
 
 //MINDMAP
-  var mind = {
+var mind = {
     "meta": {
         'name': 'example',
         'version': '1'
@@ -14,42 +14,51 @@ var options = {
     theme: 'success',
     editable: true,
 };
-    
+
 var jm = new jsMind(options);
 
 
 
-function appendRoot(main){
+function appendRoot(main) {
     //console.log (topic);
     mind.data.push({ "id": 'root', 'isroot': true, "topic": main });
     jm.show(mind);
 }
 
-function appendNode(topic){
+function appendNode(topic) {
     //console.log (topic);
     mind.data.push({ "id": topic, 'parentid': 'root', "topic": topic });
     jm.show(mind);
 }
 //VOICE COMMANDS
 if (annyang) {
-    
+
     const commands = {
-      '(the) main idea is *main': appendRoot,
-      'new idea *topic': appendNode,
-      'Append node *topic': appendNode,
-      'New node *topic': appendNode,
-        'Hello': () => {alert ('Hello there! Did you say something?')},
+        '(the) main idea is *main': appendRoot,
+        'new idea *topic': appendNode,
+        'Append node *topic': appendNode,
+        'New node *topic': appendNode,
+        'Hello': () => { alert('Hello there! Did you say something?') },
     };
-   
+
     // Add our commands to annyang
     annyang.addCommands(commands);
-  
+
+    annyang.addCallback("error", function () {
+        $(".myErrorText").text("There was an error!");
+    });
+    annyang.addCallback("resultMatch", function (userSaid, commandText, phrases) {
+        console.log(userSaid);
+        console.log(commandText);
+        console.log(phrases);
+    });
     // Start listening.
     SpeechKITT.annyang();
 
     // Define a stylesheet for KITT to use
     SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat-midnight-blue.css');
-  
+
     // Render KITT's interface
     SpeechKITT.vroom();
-  }
+}
+
