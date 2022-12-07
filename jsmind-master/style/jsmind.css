@@ -27,7 +27,6 @@
 
 .jsmind-inner canvas {
     position: absolute;
-    outline: white 3px solid;
 }
 
 /* z-index:1 */

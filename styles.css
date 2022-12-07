@@ -1,14 +1,30 @@
 body {
     background-color: black;
+    color: white;
 }
 
 h1 {
-    color: brown;
-    font-family: Gill sans;
+    color: white;
+    font-family: Verdana;
     text-align: center;
-    font-size: 1000%;
+    font-size: 50pt;
 }
 
 jmnodes {
     outline: white 3px solid;
+}
+
+#results {
+    text-align: center;
+    font-family: Verdana;
+    font-size: 1.75em;
+}
+
+#jsmind_container {
+    width: 700px;
+    margin: auto;
+}
+
+canvas {
+    width: 700px;
 }
