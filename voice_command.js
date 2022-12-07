@@ -34,9 +34,11 @@ function appendNode(topic){
 if (annyang) {
     
     const commands = {
-      'the main idea is *main': appendRoot,
+      '(the) main idea is *main': appendRoot,
       'new idea *topic': appendNode,
-        'This is something': () => {alert ('something')},
+      'Append node *topic': appendNode,
+      'New node *topic': appendNode,
+        'Hello': () => {alert ('Hello there! Did you say something?')},
     };
    
     // Add our commands to annyang
