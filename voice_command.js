@@ -19,8 +19,7 @@ var jm = new jsMind(options);
 
 
 
-function appendRoot(main) {
-    //console.log (topic);
+function createRoot(main) {
     mind.data.push({ "id": 'root', 'isroot': true, "topic": main });
     jm.show(mind);
 }
@@ -29,22 +28,33 @@ function appendNode(topic) {
     //console.log (topic);
     mind.data.push({ "id": topic, 'parentid': 'root', "topic": topic });
     jm.show(mind);
+    console.log(mind.data);
 }
-appendRoot ("Programming");
+createRoot ("Start by saying your main idea");
 annyang.addCallback('result', function(phrases) {
     console.log("I think the user said: ", phrases[0]);
     console.log("But then again, it could be any of the following: ", phrases);
-    document.getElementById("results").innerHTML = "What's being heard: " + phrases;
+    document.getElementById("results").innerHTML = "What's being heard: " + phrases; //showing what's being said on the page
   });
 
 //VOICE COMMANDS
 if (annyang) {
 
     const commands = {
-        '(the) main idea is *main': appendRoot,
+        //Adding the root node
+        '(the) main idea (is) *main': createRoot,
+        'Start from (the idea) *main': createRoot,
+        'The main thing is *main': createRoot,
+        '(the) center idea is *main': createRoot,
+        //Adding second layer nodes
         '(add) new idea *topic': appendNode,
-        'Append node *topic': appendNode,
+        'This connects to *topic': appendNode,
         'New node *topic': appendNode,
+        'From there add': appendNode,
+        //Deleting Nodes
+        'Delete (what I just wrote)': deleteNode,
+        'I take back what I just said': deleteNode,
+        'Undo': deleteNode,
         //'New idea adding on to '
         //for testing December 8th
         'Hello': () => { alert('Hello there! Did you say something?') },
